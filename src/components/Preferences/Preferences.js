@@ -1,13 +1,11 @@
 import React from 'react'
 import useToken from '../../services/useToken'
-import  { useNavigate } from 'react-router-dom'
-
 
 const API_URL = 'http://localhost:8000/api/logout'
 
 async function logoutUser(token) {
     return fetch(API_URL, {
-      method: 'POST',
+      method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
