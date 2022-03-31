@@ -18,6 +18,7 @@ import RecipeCreator from './views/RecipeCreator/RecipeCreator'
 import ShoppingList from './views/ShoppingList/ShoppingList'
 import UserPreferences from './views/UserPreferences/UserPreferences'
 import BetaBugReport from './views/BetaBugReport/BetaBugReport'
+import RecipeDetail from './components/Recipes/RecipeDetail'
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -34,7 +35,8 @@ const App = () => {
             <Routes>
               <Route path="/home" element={<Home/>} />
               <Route path="/recipes" element={<Recipes/>} />
-              <Route path="/login" element={<Login />} />              
+              <Route path="/login" element={<Login />} />
+              <Route path="/recipes/:id" element={<RecipeDetail />} exact />              
             </Routes>
           </div>
         </div>
@@ -57,13 +59,13 @@ const App = () => {
                   <Routes>
                     <Route path="/home" element={<Home/>} />
                     <Route path="/recipes" element={<Recipes/>} />
+                    <Route path="/recipes/:id" element={<RecipeDetail />} exact />              
                     <Route path="/user-meal-plans" element={<MealPlans/>} />
                     <Route path="/user-recipes" element={<UserRecipes/>} />
                     <Route path="/user-dashboard" element={<UserDashboard/>} />
                     <Route path="/user-shopping-lists" element={<ShoppingList/>} />
                     <Route path="/recipe-creator" element={<RecipeCreator/>} />
                     <Route path="/user-preferences" element={<UserPreferences/>} />
-
                     <Route path="/contact-beta" element={<BetaBugReport />} />
                   </Routes>
                 </div>

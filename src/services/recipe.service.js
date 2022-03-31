@@ -1,12 +1,8 @@
-const API_URL = 'http://localhost:8000/api'
+import { API_URL, requestHeader } from '../constants/ApiConfiguration'
 
 export function fetchRecipes() {
     return fetch(API_URL + '/recipes', {
         method: 'GET', 
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        } 
+        headers: requestHeader()
     }).then(response => response.json()) 
 }

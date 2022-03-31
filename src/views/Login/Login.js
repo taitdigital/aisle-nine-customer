@@ -22,11 +22,11 @@ export default function Login(props) {
     }
 
     if (isLoggedIn) {
-        return <Navigate to="/user-dashboard" />;
+        return <Navigate to="/user-dashboard" />
     }
 
     return(
-        <div className="flex flex-col items-center pt-6">
+        <div className="flex flex-col items-center pt-12">
             <div className="w-full max-w-xs">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
 
