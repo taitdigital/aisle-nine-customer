@@ -11,7 +11,9 @@ export const login = (payload) => {
     }).then((response) => {
         return response.json()
     }).then((r) => {
+        console.warn(r)
         localStorage.setItem('token', r.token)
+        localStorage.setItem('user', JSON.stringify(r.user))
         return r
     })
 }
@@ -26,6 +28,8 @@ export function logout() {
         } 
     }).then((response) => {
         localStorage.removeItem('token')
-        return response.json()
+        localStorage.removeItem('user')
+        window.location.href = '/login'
+        window.location.reload()
     }) 
 }

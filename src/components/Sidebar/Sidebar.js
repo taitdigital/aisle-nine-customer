@@ -2,7 +2,16 @@ import React, { useState } from 'react'
 import sidebarItems from '../../constants/SidebarItems'
 import { Link } from 'react-router-dom'
 
-import { MenuIcon, XCircleIcon } from '@heroicons/react/solid'
+import { 
+    MenuIcon, 
+    XCircleIcon, 
+    CakeIcon, 
+    CalendarIcon, 
+    ClipboardListIcon, 
+    BeakerIcon, 
+    AdjustmentsIcon,
+    ViewGridIcon 
+} from '@heroicons/react/solid'
 
 export default function Sidebar() {
     
@@ -17,10 +26,15 @@ export default function Sidebar() {
               
                 let icon = null
                 if (!name) return ''
-                if (name === 'MenuIcon') icon = MenuIcon
+                if (name === 'ViewGridIcon') icon = ViewGridIcon
+                if (name === 'CakeIcon') icon = CakeIcon
+                if (name === 'CalendarIcon') icon = CalendarIcon
+                if (name === 'ClipboardListIcon') icon = ClipboardListIcon
+                if (name === 'BeakerIcon') icon = BeakerIcon
+                if (name === 'AdjustmentsIcon') icon = AdjustmentsIcon
 
                 return React.createElement(icon, { ...props })
-              }
+            }
 
             return (
                 <li key={r.route} className="border-b-gray-500 border-b py-4">

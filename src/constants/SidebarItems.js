@@ -2,27 +2,32 @@ const sidebarItems = [
     {
         label: 'Dashboard',
         route: '/user-dashboard',
-        icon: 'MenuIcon'
+        icon: 'ViewGridIcon'
     },
     {
-        label: 'Saved Recipes',
-        route: '/user-recipes'
+        label: 'My Recipes',
+        route: '/user-recipes',
+        icon: 'CakeIcon'
     },
     {
         label: 'Meal Plans',
-        route: '/user-meal-plans'
+        route: '/user-meal-plans',
+        icon: 'CalendarIcon'
     },
     {
         label: 'Shopping Lists',
-        route: '/user-shopping-lists'
+        route: '/user-shopping-lists',
+        icon: 'ClipboardListIcon'
     },
     {
-        label: 'recipe Creator',
-        route: '/recipe-creator'
+        label: 'Recipe Creator',
+        route: '/recipe-creator',
+        icon: 'BeakerIcon'
     },
     {
-        label: 'User Preferences',
-        route: '/user-preferences'
+        label: 'My Account',
+        route: '/user-preferences',
+        icon: 'AdjustmentsIcon'
     }
 ]
 
