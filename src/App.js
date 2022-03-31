@@ -1,31 +1,76 @@
-import logo from './logo.svg'
 import './App.css'
 
-import React, { useState } from 'react';
-
+import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Login from './components/Login/Login'
-import Dashboard from './components/Dashboard/Dashboard'
-import Preferences from './components/Preferences/Preferences'
-import useToken from './services/useToken';
+import { useSelector } from 'react-redux'
 
-function App() {
-  const { token, setToken } = useToken();
 
-  if(!token) {
-    return <Login setToken={setToken} />
+import Header from './components/Header/Header'
+import Sidebar from './components/Sidebar/Sidebar'
+
+import Home from './views/Home/Home'
+import Login from './views/Login/Login'
+import Recipes from './views/Recipes/Recipes'
+import MealPlans from './views/MealPlans/MealPlans'
+import UserRecipes from './views/UserRecipes/UserRecipes'
+import UserDashboard from './views/UserDashboard/UserDashboard'
+import RecipeCreator from './views/RecipeCreator/RecipeCreator'
+import ShoppingList from './views/ShoppingList/ShoppingList'
+import UserPreferences from './views/UserPreferences/UserPreferences'
+import BetaBugReport from './views/BetaBugReport/BetaBugReport'
+
+const App = () => {
+  const { user: currentUser } = useSelector((state) => state.auth);
+
+  if(!currentUser) {
+    return (
+
+    <BrowserRouter>
+      <div>
+        <Header className="flex flex-col h-screen"/>
+
+        <div className="flex items-center justify-center min-h-screen w-screen py-2">
+          <div className="w-screen">            
+            <Routes>
+              <Route path="/home" element={<Home/>} />
+              <Route path="/recipes" element={<Recipes/>} />
+              <Route path="/login" element={<Login />} />              
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
+        
+    )
   }
 
   return (
-    <div className="wrapper">
-      <h1>Application</h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/preferences" element={<Preferences/>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+        <>
+          <BrowserRouter>
+            <div className="flex flex-col h-screen">
+              <Header />
+
+              <div className="flex items-center justify-center min-h-screen w-screen py-2">       
+                <Sidebar />
+
+                <div className="w-screen">
+                  <Routes>
+                    <Route path="/home" element={<Home/>} />
+                    <Route path="/recipes" element={<Recipes/>} />
+                    <Route path="/user-meal-plans" element={<MealPlans/>} />
+                    <Route path="/user-recipes" element={<UserRecipes/>} />
+                    <Route path="/user-dashboard" element={<UserDashboard/>} />
+                    <Route path="/user-shopping-lists" element={<ShoppingList/>} />
+                    <Route path="/recipe-creator" element={<RecipeCreator/>} />
+                    <Route path="/user-preferences" element={<UserPreferences/>} />
+
+                    <Route path="/contact-beta" element={<BetaBugReport />} />
+                  </Routes>
+                </div>
+              </div>
+            </div>
+          </BrowserRouter>
+        </>
   )
 }
 

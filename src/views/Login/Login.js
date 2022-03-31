@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './Login.css'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom';
 
-const API_URL = 'http://localhost:8000/api/login'
+import { login } from '../../actions/auth.actions'
 
-async function loginUser(credentials) {
-    return fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(credentials)
-    }).then(data => data.json())
-}
+export default function Login(props) {
+    const dispatch = useDispatch()
 
-
-export default function Login({ setToken }) {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    const [loading, setLoading] = useState(false);
+    const { isLoggedIn } = useSelector(state => state.auth)
 
     const handleSubmit = async e => {
-        e.preventDefault();
-        const token = await loginUser({
-            email,
-            password
-        });
-        setToken(token);
+        e.preventDefault()
+
+        dispatch(login({ email, password })).then(() => {})
+          .catch(() => {
+            setLoading(false);
+          })
+    }
+
+    if (isLoggedIn) {
+        return <Navigate to="/user-dashboard" />;
     }
 
     return(
-        <div className="login-wrapper pt-6">
+        <div className="flex flex-col items-center pt-6">
             <div className="w-full max-w-xs">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
 
@@ -71,8 +67,4 @@ export default function Login({ setToken }) {
             </div>
         </div>
     )
-}
-
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
 }
