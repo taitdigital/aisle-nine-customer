@@ -30,7 +30,7 @@ const App = () => {
       <div>
         <Header className="flex flex-col h-screen"/>
 
-        <div className="flex items-start min-h-screen w-screen py-2">
+        <div className="flex items-start min-h-screen w-screen pt-20">
           <div className="w-screen">            
             <Routes>
               <Route path="/home" element={<Home/>} />
@@ -55,7 +55,7 @@ const App = () => {
               <div className="flex items-start pt-20 justify-center min-h-screen w-screen py-2">       
                 <Sidebar />
 
-                <div className="w-screen">
+                <div className="w-screen pt-20">
                   <Routes>
                     <Route path="/home" element={<Home/>} />
                     <Route path="/recipes" element={<Recipes/>} />

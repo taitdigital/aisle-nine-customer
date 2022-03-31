@@ -1,3 +1,4 @@
+import { fetchRecipes } from '../../services/recipe.service'
 import { getRecipes } from '../../actions/recipe.actions'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -30,8 +31,8 @@ export default function RecipeList() {
     if (recipes?.recipes) {       
         recipeList = recipes.recipes.map((r) =>        
             <div key={r.recipe_id} className="border-b border-blue-200 flex cursor-pointer hover:bg-blue-50" onClick={() => { handleClick(r.recipe_id) }}>
-                <div className="p-2 whitespace-nowrap border-r-3 overflow-hidden h-auto">
-                    <img src={r.image} width="90" height="90"  />
+                <div className="p-2 w-[90] whitespace-nowrap border-r-3 overflow-hidden h-auto">
+                    <img src={r.image} width="190" height="190"  />
 
                     <button className="
                         px-2 py-1 my-2 rounded-full border bg-blue-400 border-blue-300
@@ -42,10 +43,10 @@ export default function RecipeList() {
                     </button> 
 
                 </div>
-                <div className="p-2 whitespace-nowrap">
+                <div className="p-2">
                     <small className="text-left text-gray-400">{r.category.name}</small>
                     <div className="font-medium text-gray-800">{r.name}</div>
-                    <div className="text-left">{r.description}</div>
+                    <div className="text-left flex-wrap flex-shrink-1">{r.description}</div>
                     <div className="flex flex-wrap border-t border-blue-200 pt-2 mt-4">
                         <small className="text-left text-xs text-blue-400 py-2 border-transparent border pr-2">Ingredients:</small>
 
