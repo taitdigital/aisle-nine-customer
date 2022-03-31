@@ -1,24 +1,30 @@
-import { fetchRecipes } from '../../services/recipe.service'
-import { getRecipes, recipesLoaded } from '../../actions'
-import React, { useEffect } from 'react'
+import { getRecipes } from '../../actions/recipe.actions'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { StarIcon } from '@heroicons/react/solid'
 import { useNavigate } from 'react-router-dom';
 
 export default function RecipeList() {
     const dispatch = useDispatch()
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
+    const recipes = useSelector(state => state.recipes)
+
 
     const handleClick = (recipe_id) => {
         navigate(`/recipes/${recipe_id}`);
     }
 
-    const recipes = useSelector(state => state.recipes)
     let recipeList = []
   
     useEffect(() => {
-      dispatch(getRecipes())
-      fetchRecipes().then(r => dispatch(recipesLoaded(r)))
+        setLoading(true)
+
+        dispatch(getRecipes()).then(() => {
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })
     }, [])
 
     if (recipes?.recipes) {       

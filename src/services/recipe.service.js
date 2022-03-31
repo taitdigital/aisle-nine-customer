@@ -6,3 +6,10 @@ export function fetchRecipes() {
         headers: requestHeader()
     }).then(response => response.json()) 
 }
+
+export function fetchRecipe(id) {
+    return fetch(API_URL + '/recipes/' + id, {
+        method: 'GET', 
+        headers: requestHeader()
+    }).then(response => response.json()) 
+}

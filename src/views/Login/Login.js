@@ -14,11 +14,13 @@ export default function Login(props) {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setLoading(true)
 
-        dispatch(login({ email, password })).then(() => {})
-          .catch(() => {
-            setLoading(false);
-          })
+        dispatch(login({ email, password })).then(() => {
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })
     }
 
     if (isLoggedIn) {

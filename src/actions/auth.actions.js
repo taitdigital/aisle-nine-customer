@@ -1,4 +1,4 @@
-import * as AuthService from '../services/auth.service';
+import * as AuthService from '../services/auth.service'
 
 export const login = (credentials) => (dispatch) => {
     return AuthService.login(credentials).then(

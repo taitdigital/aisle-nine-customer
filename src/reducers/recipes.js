@@ -1,10 +1,26 @@
 export default (state = null, action) => {
-    switch(action.type) {
-        case 'GET_RECIPES':
-            return { ...state, loading: true };
-        case 'RECIPES_LOADED':
-            return { ...state, ...{recipes: action.data}, loading: false };
+    const { type, payload } = action
+
+    switch (type) {
+        case 'FETCH_RECIPES_SUCCESS':
+          return {
+            ...state,
+            recipes: payload.recipes,
+          };
+        case 'FETCH_RECIPES_FAIL':
+          return {
+            ...state,
+          };
+        case 'FETCH_RECIPE_SUCCESS':
+          return {
+            ...state,
+            recipes: payload.recipe,
+          };
+        case 'FETCH_RECIPE_FAIL':
+          return {
+            ...state,
+          };
         default:
-            return state
-    }
+          return state;
+      }
 }
