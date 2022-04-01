@@ -45,7 +45,7 @@ export default function RecipeDetail() {
                                     <h6 className="mb-2 text-2m font-bold tracking-tight text-gray-900 dark:text-white text-center">Steps</h6>
                                     { 
                                         recipe.current_recipe.recipe_steps.map((s) => 
-                                            <RecipeStep step={s} key={s.recipe_step_id}/>
+                                            <RecipeStep step={s} key={s.recipe_step_id} ingredientList={recipe.current_recipe.recipe_ingredients}/>
                                         )
                                     }
                                 </div>
