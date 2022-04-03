@@ -2,6 +2,7 @@ import './App.css'
 
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import PrivateRoute from './components/Utility/PrivateRoute'
 import { useSelector } from 'react-redux'
 
 
@@ -23,50 +24,29 @@ import RecipeDetail from './components/Recipes/RecipeDetail'
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
 
-  if(!currentUser) {
-    return (
-
-    <BrowserRouter>
-      <div>
-        <Header className="flex flex-col h-screen"/>
-
-        <div className="flex items-start min-h-screen w-screen pt-20">
-          <div className="w-screen">            
-            <Routes>
-              <Route path="/home" element={<Home/>} />
-              <Route path="/recipes" element={<Recipes/>} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/recipes/:id" element={<RecipeDetail />} exact />              
-            </Routes>
-          </div>
-        </div>
-      </div>
-    </BrowserRouter>
-        
-    )
-  }
-
   return (
         <>
           <BrowserRouter>
             <div className="flex flex-col h-screen">
               <Header />
 
-              <div className="flex items-start pt-20 justify-center min-h-screen w-screen py-2">       
-                <Sidebar />
+              <div className="flex items-start pt-20 justify-center min-h-screen w-screen py-2">
+                { (currentUser) ? <Sidebar /> : ''  }       
+                
 
                 <div className="w-screen pt-20">
                   <Routes>
+                    <Route path="/login" element={<Login />} />
                     <Route path="/home" element={<Home/>} />
                     <Route path="/recipes" element={<Recipes/>} />
                     <Route path="/recipes/:id" element={<RecipeDetail />} exact />              
-                    <Route path="/user-meal-plans" element={<MealPlans/>} />
-                    <Route path="/user-recipes" element={<UserRecipes/>} />
-                    <Route path="/user-dashboard" element={<UserDashboard/>} />
-                    <Route path="/user-shopping-lists" element={<ShoppingList/>} />
-                    <Route path="/recipe-creator" element={<RecipeCreator/>} />
-                    <Route path="/user-preferences" element={<UserPreferences/>} />
-                    <Route path="/contact-beta" element={<BetaBugReport />} />
+                    <Route path="/user-meal-plans" element={<PrivateRoute><MealPlans/></PrivateRoute>} />
+                    <Route path="/user-recipes" element={<PrivateRoute><UserRecipes/></PrivateRoute>} />
+                    <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard/></PrivateRoute>} />
+                    <Route path="/user-shopping-lists" element={<PrivateRoute><ShoppingList/></PrivateRoute>} />
+                    <Route path="/recipe-creator" element={<PrivateRoute><RecipeCreator/></PrivateRoute>} />
+                    <Route path="/user-preferences" element={<PrivateRoute><UserPreferences/></PrivateRoute>} />
+                    <Route path="/contact-beta" element={<PrivateRoute><BetaBugReport /></PrivateRoute>} />
                   </Routes>
                 </div>
               </div>

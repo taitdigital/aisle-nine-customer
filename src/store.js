@@ -7,8 +7,6 @@ import { loadState } from './services/localStorage.service'
 const persistedState = loadState();
 const middleware = [thunk];
 
-console.warn('persistedState', persistedState);
-
 const store = createStore(
     reducers,
     composeWithDevTools(applyMiddleware(...middleware))
