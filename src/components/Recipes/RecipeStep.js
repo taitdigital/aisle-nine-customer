@@ -15,9 +15,10 @@ export default function RecipeStep({ step, ingredientList }) {
         { 
           ingredientList.filter(i => step.ingredients.includes(i.recipe_ingredient_id)).map((i) => 
               <span key={i.ingredient_id} className="
-                                    px-2 py-1 my-1 rounded-full border border-blue-400 
-                                    text-blue-400 font-semibold text-xs mr-2 flex align-center 
-                                    w-max">
+                px-2 py-1 my-1 rounded-full border border-blue-400 
+                text-blue-400 font-semibold text-xs mr-2 flex align-center 
+                w-max"
+              >
                   {i.quantity} {i.measurement} - {i.treatment} {i.ingredient.name}
               </span> 
           )
