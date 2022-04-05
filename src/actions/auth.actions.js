@@ -7,20 +7,20 @@ export const login = (credentials) => (dispatch) => {
             type: 'LOGIN_SUCCESS',
             payload: { user: data },
           });
-          return Promise.resolve();
+          return Promise.resolve()
         },
         (error) => {
           dispatch({
             type: 'LOGIN_FAIL',
             message: error
-          });
+          })
         
-          return Promise.reject();
+          return Promise.reject()
         }
-      );
+      )
 }
   
 export const logout = () => (dispatch) => {
-    AuthService.logout();
-    dispatch({ type: 'LOGOUT' });
+    AuthService.logout()
+    dispatch({ type: 'LOGOUT' })
 }

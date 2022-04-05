@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+
 import { getRecipe } from '../../actions/recipe.actions'
 import RecipeStep from './RecipeStep'
+import { Card } from '../../components/UI/Card'
+
 
 export default function RecipeDetail() {
     const location = useLocation();
@@ -23,15 +26,11 @@ export default function RecipeDetail() {
 
     if(recipe) {
         return (
-            <div className="flex flex-col w-screen px-10">        
+            <div className="flex flex-col w-screen pt-6">        
                 <div>
-                    <div className="grid grid-cols-6 gap-4">
-                        <div className="col-span-4 flex flex-col">
-                            <div className="p-6 bg-white w-full rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
-                                    {recipe.current_recipe.name}
-                                </h5>
-                                <hr className="py-4" />
+                    <div className="grid grid-cols-12 gap-0">
+                        <div className="col-span-8 flex flex-col">
+                            <Card title={recipe.current_recipe.name}>
                                 <div className="flex">
                                     <img src={recipe.current_recipe.image} width="150" height="150" className="border-r-2" />
                                     <div className="pl-4">
@@ -41,7 +40,6 @@ export default function RecipeDetail() {
                                 </div>
                                 <div className="mt-12">
                                     <hr className="pt-4" />
-
                                     <h6 className="mb-2 text-2m font-bold tracking-tight text-gray-900 dark:text-white text-center">Steps</h6>
                                     { 
                                         recipe.current_recipe.recipe_steps.map((s) => 
@@ -49,12 +47,10 @@ export default function RecipeDetail() {
                                         )
                                     }
                                 </div>
-                            </div>
+                            </Card>
                         </div>
-                        <div className="col-span-2">
-                            <div className="p-6 bg-white w-full rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Ingredients</h5>
-                                <hr className="py-4" />
+                        <div className="col-span-4">
+                            <Card title="Ingredients">
                                 { 
                                     recipe.current_recipe.recipe_ingredients.map((i) => 
                                         <span key={i.ingredient_id} className="
@@ -65,7 +61,7 @@ export default function RecipeDetail() {
                                         </span> 
                                     )
                                 }
-                            </div>
+                            </Card>
                         </div>
                     </div>
                 </div>

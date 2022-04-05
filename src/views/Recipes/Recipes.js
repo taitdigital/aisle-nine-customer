@@ -1,17 +1,18 @@
 import React from 'react'
+
+import { Card } from '../../components/UI/Card'
 import RecipeList from '../../components/Recipes/RecipeList'
+import SearchForm from '../../components/Forms/SearchForm'
 
 export default function Recipes() {
+
     return (
-        <div className="flex flex-col w-screen px-10">        
-            <div className="p-6 bg-white w-full rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
-                    Browse Recipes
-                </h5>
-                <hr className="py-4" />
+        <div className="pt-6 min-w-full">
+            <Card title="Browse Recipes">
+                <SearchForm />
+                <hr className="my-4" />
                 <RecipeList />
-            </div>
+            </Card>
         </div>
     )
-
 }

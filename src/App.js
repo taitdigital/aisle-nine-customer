@@ -30,24 +30,23 @@ const App = () => {
             <div className="flex flex-col h-screen">
               <Header />
 
-              <div className="flex items-start pt-20 justify-center min-h-screen w-screen py-2">
+              <div className="flex items-start justify-center min-h-screen bg-blue-100 w-screen py-2">
                 { (currentUser) ? <Sidebar /> : ''  }       
                 
-
-                <div className="w-screen pt-20">
-                  <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/home" element={<Home/>} />
-                    <Route path="/recipes" element={<Recipes/>} />
-                    <Route path="/recipes/:id" element={<RecipeDetail />} exact />              
-                    <Route path="/user-meal-plans" element={<PrivateRoute><MealPlans/></PrivateRoute>} />
-                    <Route path="/user-recipes" element={<PrivateRoute><UserRecipes/></PrivateRoute>} />
-                    <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard/></PrivateRoute>} />
-                    <Route path="/user-shopping-lists" element={<PrivateRoute><ShoppingList/></PrivateRoute>} />
-                    <Route path="/recipe-creator" element={<PrivateRoute><RecipeCreator/></PrivateRoute>} />
-                    <Route path="/user-preferences" element={<PrivateRoute><UserPreferences/></PrivateRoute>} />
-                    <Route path="/contact-beta" element={<PrivateRoute><BetaBugReport /></PrivateRoute>} />
-                  </Routes>
+                <div className="w-screen pt-12 flex justify-center items-center">
+                    <Routes>
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/home" element={<Home/>} />
+                      <Route path="/recipes" element={<Recipes/>} />
+                      <Route path="/recipes/:id" element={<RecipeDetail />} exact />              
+                      <Route path="/user-meal-plans" element={<PrivateRoute><MealPlans/></PrivateRoute>} />
+                      <Route path="/user-recipes" element={<PrivateRoute><UserRecipes/></PrivateRoute>} />
+                      <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard/></PrivateRoute>} />
+                      <Route path="/user-shopping-lists" element={<PrivateRoute><ShoppingList/></PrivateRoute>} />
+                      <Route path="/recipe-creator" element={<PrivateRoute><RecipeCreator/></PrivateRoute>} />
+                      <Route path="/user-preferences" element={<PrivateRoute><UserPreferences/></PrivateRoute>} />
+                      <Route path="/contact-beta" element={<PrivateRoute><BetaBugReport /></PrivateRoute>} />
+                    </Routes>
                 </div>
               </div>
             </div>
