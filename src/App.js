@@ -43,7 +43,7 @@ const App = () => {
                       <Route path="/user-recipes" element={<PrivateRoute><UserRecipes/></PrivateRoute>} />
                       <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard/></PrivateRoute>} />
                       <Route path="/user-shopping-lists" element={<PrivateRoute><ShoppingList/></PrivateRoute>} />
-                      <Route path="/recipe-creator" element={<PrivateRoute><RecipeCreator/></PrivateRoute>} />
+                      <Route path="/recipe-creator/*" element={<PrivateRoute><RecipeCreator/></PrivateRoute>} />
                       <Route path="/user-preferences" element={<PrivateRoute><UserPreferences/></PrivateRoute>} />
                       <Route path="/contact-beta" element={<PrivateRoute><BetaBugReport /></PrivateRoute>} />
                     </Routes>
