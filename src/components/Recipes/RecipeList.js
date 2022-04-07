@@ -21,7 +21,7 @@ export default function RecipeList() {
     }, [])
 
     return (
-        <div>
+        <div className="w-2/3">
             <section className="antialiased text-gray-600 h-screen px-4">
                 <div className="flex flex-col justify-center pt-4">
                     <div className="p-3">

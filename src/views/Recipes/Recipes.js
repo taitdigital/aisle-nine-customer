@@ -11,7 +11,9 @@ export default function Recipes() {
             <Card title="Browse Recipes">
                 <SearchForm />
                 <hr className="my-4" />
-                <RecipeList />
+                <div className="min-w-full flex justify-center">
+                    <RecipeList />
+                </div>
             </Card>
         </div>
     )

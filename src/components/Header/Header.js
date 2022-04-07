@@ -9,7 +9,7 @@ export default function Home() {
   const { user: currentUser } = useSelector((state) => state.auth);
 
   return (
-    <header className="flex items-center justify-between px-5 py-5 bg-gray-700 text-white text-center fixed top-0 left-0 w-screen">
+    <header className="flex items-center justify-between px-5 py-5 bg-gray-700 text-white text-center fixed top-0 left-0 w-screen z-10">
         <div></div>
         <ul className="flex">
           <li className="px-4">
