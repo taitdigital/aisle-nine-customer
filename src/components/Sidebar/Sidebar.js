@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import sidebarItems from '../../constants/SidebarItems'
 import { Link } from 'react-router-dom'
 
+import Logout from '../Logout/Logout'
+
 import { 
     MenuIcon, 
     XCircleIcon, 
@@ -38,8 +40,8 @@ export default function Sidebar() {
 
             return (
                 <li key={r.route} className="border-b-gray-500 border-b py-4">
-                    <Link to={r.route} onClick={() => setShowSidebar(!showSidebar)} className="flex">
-                        <Icon name={r.icon} className="h-5 w-5 pr-2" />
+                    <Link to={r.route} onClick={() => setShowSidebar(!showSidebar)} className="flex items-center">
+                        <Icon name={r.icon} className="h-8 w-8 pr-2" />
                         <span>{r.label}</span>
                     </Link>
                 </li>
@@ -71,6 +73,10 @@ export default function Sidebar() {
 
                 <ul>
                     {items}
+
+                    <li className="border-b-gray-500 py-4">
+                        <Logout />
+                    </li>
                 </ul>
             </div>
         </>

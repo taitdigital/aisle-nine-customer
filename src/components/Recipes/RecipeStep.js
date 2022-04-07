@@ -1,4 +1,5 @@
 import React from 'react'
+import { PlayIcon, PauseIcon } from '@heroicons/react/solid'
 import { IMG_URL, PLACEHOLDER_IMG } from '../../constants/ApiConfiguration'
 
 export default function RecipeStep({ step, ingredientList }) {
@@ -14,11 +15,17 @@ export default function RecipeStep({ step, ingredientList }) {
           <label className="lowercase pl-2 text-gray-600">{step.name}</label>
         </div>
 
-        <div className="flex py-12 items-center">
+        <div className="flex py-12">
           <div className="w-[80px] h-[80px] flex-shrink-0 whitespace-nowrap rounded border border-r-3 overflow-hidden">                
               <img src={stepImage} width="80" className="h-full" /> 
           </div>
-          <p className="pl-4">{step.description}</p>
+          <p className="pl-4">
+            <small className="block flex items-center text-xs text-gray-400 my-2">
+              <PlayIcon className="w-4 h-4 mr-2" />
+              <span>{step.timer}</span>
+            </small>
+            {step.description}
+          </p>
         </div>
 
         <div className="flex flex-wrap">

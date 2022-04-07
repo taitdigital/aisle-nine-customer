@@ -2,7 +2,6 @@ import React from 'react'
 import { HomeIcon, BeakerIcon } from '@heroicons/react/solid'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Logout from '../Logout/Logout'
 
 export default function Home() {
 
@@ -25,11 +24,7 @@ export default function Home() {
             </Link>
           </li>
         </ul>        
-        {
-          (currentUser) ? 
-            <Logout /> : 
-            <Link to="/login" className="flex">Login</Link>
-        }
+        { currentUser ? <div></div> : <Link to="/login" className="flex">Login</Link> }
     </header>
   );
 }
