@@ -1,14 +1,16 @@
 
 import React, { useState } from 'react'
+import { SearchIcon, TrashIcon } from '@heroicons/react/solid'
+import IngredientListItem from './IngredientListItem'
 
 export default function CreateIngredientsForm() {
     const [loading, setLoading] = useState(false);
 
-    const handleAddIngredient = async e => {
+    const onAddIngredient = async e => {
         e.preventDefault()
     }
 
-    const handleRemoveIngredient = async e => {
+    const onRemoveIngredient = async e => {
         e.preventDefault()
     }
 
@@ -18,45 +20,44 @@ export default function CreateIngredientsForm() {
 
     return (
         <div className="min-w-full">
-            <h5>Basic Details</h5>
+            <h5 className="text-center">Add Ingredients</h5>
             <hr className="my-4" />
 
             <div className="flex min-w-full"> 
-                <div className="w-3/5 border-r mr-2 py-4 my-4 px-8">
+                <div className="w-1/2 border-r mr-2 pb-4 my-4 px-8">
                     <form onSubmit={handleSearch}>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="example">
-                                Find Ingredient
-                            </label>
-                            <input 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                                id="SearchIngrdient" 
-                                type="text" 
-                                placeholder="Search ..."
-                            />
-                        </div>
-                    </form>
-                </div>
-                <div className="w-2/5">
-                    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 min-w-full">
-                        <li className="py-3 sm:py-4 border-b min-w-full">
-                            <div className="flex items-center space-x-4">
-                                <div className="flex-shrink-0">
-                                    <img className="w-8 h-8 rounded-full border overflow-hidden" src="" alt="ingredient image" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Ingredient Name
-                                    </p>
-                                    <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        Ingredient Description
-                                    </p>
-                                </div>
-                                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    remove button
+                            <label htmlFor="ingredient" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Find Ingredient</label>
+                            <div className="relative">
+                                <input 
+                                    type="text" 
+                                    id="ingredient" 
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                    placeholder="Ingredient name ..."
+                                    onChange={handleSearch}
+                                />
+                                <div className="flex absolute inset-y-0 right-0 items-center pr-3 pointer-events-none">
+                                    <SearchIcon className="h-6 w-6" />
                                 </div>
                             </div>
-                        </li>
+                        </div>
+                    </form>
+
+                    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 min-w-full">
+                        <IngredientListItem action="add" />
+                        <IngredientListItem action="add" />
+                        <IngredientListItem action="add" />
+                        <IngredientListItem action="add" />
+                        <IngredientListItem action="add" />
+                    </ul>
+                </div>
+                <div className="w-1/2">
+                    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 min-w-full">
+                        <IngredientListItem action="remove" />
+                        <IngredientListItem action="remove" />
+                        <IngredientListItem action="remove" />
+                        <IngredientListItem action="remove" />
+                        <IngredientListItem action="remove" />
                     </ul>
                 </div>
             </div>
