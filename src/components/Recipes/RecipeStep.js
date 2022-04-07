@@ -1,28 +1,36 @@
 import React from 'react'
+import { IMG_URL, PLACEHOLDER_IMG } from '../../constants/ApiConfiguration'
 
 export default function RecipeStep({ step, ingredientList }) {
+
+  const stepImage = (step.image) ? `${IMG_URL}/${step.image}` : PLACEHOLDER_IMG
+
+
   return (
-    <div>
-      { console.warn(step, ingredientList) }
-        <h1>{step.name}</h1>
-        <hr />
-        <div className="flex">
-          <img src={step.image} />
-          <p>{step.description}</p>
+    <div className="border-b mb-12 pb-12">
+        <div className="flex items-center">
+          <label className="lowercase pr-2 text-gray-600">step</label>
+          <span className="block border-gray-600 text-gray-600 rounded-full border py-2 px-4">{step.step_order}</span>
+          <label className="lowercase pl-2 text-gray-600">{step.name}</label>
         </div>
-        <hr />
-        <div className="flex">
-        { 
-          ingredientList.filter(i => step.ingredients.includes(i.recipe_ingredient_id)).map((i) => 
-              <span key={i.ingredient_id} className="
-                px-2 py-1 my-1 rounded-full border border-blue-400 
-                text-blue-400 font-semibold text-xs mr-2 flex align-center 
-                w-max"
-              >
-                  {i.quantity} {i.measurement} - {i.treatment} {i.ingredient.name}
-              </span> 
-          )
-        }
+
+        <div className="flex py-12 items-center">
+          <div className="w-[80px] h-[80px] flex-shrink-0 whitespace-nowrap rounded border border-r-3 overflow-hidden">                
+              <img src={stepImage} width="80" className="h-full" /> 
+          </div>
+          <p className="pl-4">{step.description}</p>
+        </div>
+
+        <div className="flex flex-wrap">
+          <span className="text-gray-400 text-xs border border-transparent p-1 m-1">Ingredients in this step: </span>
+          { 
+            ingredientList.filter(i => step.ingredients.includes(i.recipe_ingredient_id)).map((i) => 
+                <span key={i.ingredient_id} className="text-gray-400 rounded-lg text-xs border p-1 m-1"
+                >
+                    {i.quantity} {i.measurement} - {i.treatment} {i.ingredient.name}
+                </span> 
+            )
+          }
         </div>
     </div>
   );
