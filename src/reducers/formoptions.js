@@ -1,11 +1,13 @@
 export default (state = null, action) => {
     const { type, payload } = action
 
+    console.warn('reducer payload', payload)
+
     switch (type) {
         case 'FETCH_INGREDIENT_OPTIONS_SUCCESS':
             return {
                 ...state,
-                ingredient_options: payload.ingredient_options
+                ingredient_options: payload.data
             }
         case 'FETCH_INGREDIENT_OPTIONS_FAIL':
             return {
@@ -14,7 +16,7 @@ export default (state = null, action) => {
         case 'FETCH_RECIPE_OPTIONS_SUCCESS':
             return {
                 ...state,
-                recipe_options: payload.recipe_options,
+                recipe_options: payload.data,
             }
         case 'FETCH_RECIPE_OPTIONS_FAIL':
             return {
@@ -23,7 +25,7 @@ export default (state = null, action) => {
         case 'FETCH_CATEGORY_OPTIONS_SUCCESS':
             return {
                 ...state,
-                category_options: payload.category_options,
+                category_options: payload.data,
             }
         case 'FETCH_CATEGORY_OPTIONS_FAIL':
             return {

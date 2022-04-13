@@ -1,10 +1,13 @@
 
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { SearchIcon } from '@heroicons/react/solid'
 
 
 export default function CreateBasicDetailsForm() {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false)
+    const recipeOptions = useSelector(state => state.form_options?.recipe_options)
 
     const handleSubmit = async e => {
         e.preventDefault()

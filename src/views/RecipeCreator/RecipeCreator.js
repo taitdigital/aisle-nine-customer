@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom'
 
+import { 
+  getFormOptions
+} from '../../actions/form.actions'
 import { Card } from '../../components/UI/Card'
 import Stepper from '../../components/UI/Stepper'
 import CreateBasicDetailsForm from '../../components/Forms/RecipeCreator/CreateBasicDetailsForm'
@@ -10,11 +15,14 @@ import CreateStepsForm from '../../components/Forms/RecipeCreator/CreateStepsFor
 import SaveRecipeForm from '../../components/Forms/RecipeCreator/SaveRecipeForm'
 
 export default function RecipeCreator() {
-
   let navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  
 	const [currentStep, setCurrentStep] = useState(1)
   const location = useLocation()
-	
+  const [loading, setLoading] = useState(false)
+  
   const stepArray = [
     {
       description: 'Basic Details',
@@ -39,8 +47,16 @@ export default function RecipeCreator() {
 	]
 
   useEffect(() => {
+    setLoading(true)
+
+    dispatch(getFormOptions()).then(() => {
+        setLoading(false)
+    }).catch(() => {
+        setLoading(false)
+    })
+
     setCurrentStep(stepArray.findIndex(i => i.to === location.pathname) + 1)
-  })
+  }, [])
 
 	const handleClick = (clickType) => {
 		let newStep = currentStep;
