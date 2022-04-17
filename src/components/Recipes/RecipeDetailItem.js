@@ -26,7 +26,7 @@ export default function RecipeDetailItem({recipe}) {
             <div className="flex-1 border-gray-200 flex flex-col lg:flex-row">    
                 <div className="flex lg:flex-col flex-row">
                     <div className="w-[30px] h-[30px] lg:w-[80px] lg:h-[80px] flex-shrink-0 whitespace-nowrap rounded border border-r-3 overflow-hidden">   
-                        <img src={recipeImage} className="w-[30px] lg:w-[80px]"className="h-full" />
+                        <img src={recipeImage} className="w-[30px] lg:w-[80px]" />
                     </div>
                     <div className="flex pt-2 pr-2 lg:pr-0">
                         { vegetarian && !vegan ? <span className="border rounded-r-full">V</span> : <></> }
