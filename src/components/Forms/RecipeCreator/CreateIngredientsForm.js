@@ -1,21 +1,34 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { searchIngredientOptions } from '../../../actions/form.actions'
+
 import { SearchIcon, TrashIcon } from '@heroicons/react/solid'
 import IngredientListItem from './IngredientListItem'
 
 export default function CreateIngredientsForm() {
     const [loading, setLoading] = useState(false);
+    const ingredientOptions = useSelector(state => state.form_options?.ingredient_options)
+    const dispatch = useDispatch()
 
     const onAddIngredient = async e => {
         e.preventDefault()
+        console.warn('onAddIngredient')
     }
 
     const onRemoveIngredient = async e => {
         e.preventDefault()
+        console.warn('onRemoveIngredient')
     }
 
     const handleSearch = async e => {
         e.preventDefault()
+
+        dispatch(searchIngredientOptions(e.target.value)).then(() => {
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })        
     }
 
     return (
@@ -45,18 +58,10 @@ export default function CreateIngredientsForm() {
 
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 min-w-full">
                         <IngredientListItem action="add" />
-                        <IngredientListItem action="add" />
-                        <IngredientListItem action="add" />
-                        <IngredientListItem action="add" />
-                        <IngredientListItem action="add" />
                     </ul>
                 </div>
                 <div className="w-1/2">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 min-w-full">
-                        <IngredientListItem action="remove" />
-                        <IngredientListItem action="remove" />
-                        <IngredientListItem action="remove" />
-                        <IngredientListItem action="remove" />
                         <IngredientListItem action="remove" />
                     </ul>
                 </div>

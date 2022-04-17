@@ -22,25 +22,28 @@ export function fetchCategoryOptions() {
 } 
 
 export function searchRecipeOptions(payload) {
-    return fetch(API_BASE + '/form-options/recipes', {
+    return fetch(API_BASE + '/form-options/recipes/search', {
         method: 'POST', 
         headers: requestHeader(),
-        body: payload
+        body: JSON.stringify({ search: payload })
     }).then(response => response.json())
 }
 
 export function searchIngredientOptions(payload) {
-    return fetch(API_BASE + '/form-options/ingredients', {
+
+    console.warn('searchIngredientOptions', JSON.stringify({ search: payload }))
+
+    return fetch(API_BASE + '/form-options/ingredients/search', {
         method: 'POST', 
         headers: requestHeader(),
-        body: payload
+        body: JSON.stringify({ search: payload })
     }).then(response => response.json())
 } 
 
 export function searchCategoryOptions(payload) {
-    return fetch(API_BASE + '/form-options/categories', {
+    return fetch(API_BASE + '/form-options/categories/search', {
         method: 'POST', 
         headers: requestHeader(),
-        body: payload
+        body: JSON.stringify({ search: payload })
     }).then(response => response.json())
 } 

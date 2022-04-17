@@ -5,12 +5,14 @@ import { IMG_URL, PLACEHOLDER_IMG } from '../../constants/ApiConfiguration'
 export default function RecipeStep({ step, ingredientList }) {
 
   const stepImage = (step.image) ? `${IMG_URL}/${step.image}` : PLACEHOLDER_IMG
-
+  
+  const displayFormat = (value) => { 
+    return value.split(':').map(i => i.length < 2 ? '0' + i : i).join(':')
+  } 
 
   return (
     <div className="border-b mb-12 pb-12">
         <div className="flex items-center">
-          <label className="lowercase pr-2 text-gray-600">step</label>
           <span className="block border-gray-600 text-gray-600 rounded-full border py-2 px-4">{step.step_order}</span>
           <label className="lowercase pl-2 text-gray-600">{step.name}</label>
         </div>
@@ -19,10 +21,10 @@ export default function RecipeStep({ step, ingredientList }) {
           <div className="w-[80px] h-[80px] flex-shrink-0 whitespace-nowrap rounded border border-r-3 overflow-hidden">                
               <img src={stepImage} width="80" className="h-full" /> 
           </div>
-          <p className="pl-4">
+          <p className="pl-4 whitespace-pre-wrap">
             <small className="block flex items-center text-xs text-gray-400 my-2">
               <PlayIcon className="w-4 h-4 mr-2" />
-              <span>{step.timer}</span>
+              <span>{displayFormat(step.timer)}</span>
             </small>
             {step.description}
           </p>

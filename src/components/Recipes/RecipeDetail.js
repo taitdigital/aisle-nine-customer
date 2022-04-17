@@ -30,12 +30,12 @@ export default function RecipeDetail() {
     }
 
     return (
-        <div className="flex flex-col w-screen pt-6">        
+        <div className="flex flex-col w-full pt-6">        
             
                 <Card title={recipe.current_recipe.name}>
                     <div className="w-full flex justify-center">
-                        <div className="flex w-10/12">
-                            <div className="w-8/12">
+                        <div className="flex flex-col-reverse w-full lg:flex-row lg:w-10/12">
+                            <div className="w-full lg:w-8/12">
                                 <div className="flex">
                                     <RecipeDetailItem recipe={recipe.current_recipe} />
                                 </div>
@@ -54,7 +54,7 @@ export default function RecipeDetail() {
                                 </div>
                             </div>
 
-                            <div className="w-4/12 pl-4">
+                            <div className="lg:w-4/12 lg:pl-4 pb-4">
                                 <div className="border rounded p-1 border-gray-200">
                                     <label className="pb-4 pt-2 block text-center text-gray-600">Ingredients</label>
                                     <ul>

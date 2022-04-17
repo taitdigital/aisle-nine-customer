@@ -16,10 +16,9 @@ import SaveRecipeForm from '../../components/Forms/RecipeCreator/SaveRecipeForm'
 
 export default function RecipeCreator() {
   let navigate = useNavigate()
-  const dispatch = useDispatch()
-
   
 	const [currentStep, setCurrentStep] = useState(1)
+  const dispatch = useDispatch()
   const location = useLocation()
   const [loading, setLoading] = useState(false)
   

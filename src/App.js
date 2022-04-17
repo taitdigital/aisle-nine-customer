@@ -30,7 +30,7 @@ const App = () => {
             <div className="flex flex-col h-screen">
               <Header />
 
-              <div className="flex items-start justify-center min-h-screen bg-blue-100 w-screen py-2">
+              <div className="flex items-start justify-center min-h-screen bg-blue-100 w-full py-2">
                 { (currentUser) ? <Sidebar /> : ''  }       
                 
                 <div className="w-screen pt-12 flex justify-center items-center">

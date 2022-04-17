@@ -2,19 +2,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+
 export default function ConfigureIngredientsForm() {
     const [loading, setLoading] = useState(false)
-    const ingredientOptions = useSelector(state => state.form_options?.ingredient_options)
+    const dispatch = useDispatch()
 
     const handleSubmit = async e => {
         e.preventDefault()
         // setLoading(true)
-
-        // dispatch([ACTION]).then(() => {
-        //     setLoading(false)
-        // }).catch(() => {
-        //     setLoading(false)
-        // })
     }
 
     return (

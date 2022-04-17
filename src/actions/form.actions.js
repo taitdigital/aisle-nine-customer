@@ -1,16 +1,16 @@
 import * as FormOptionsService from '../services/formOptions.service'
 
-export const getRecipeOptions = () => (dispatch) => {
-    return FormOptionsService.fetchRecipeOptions().then((data) => {
+export const searchRecipeOptions = (searchTerm) => (dispatch) => {
+    return FormOptionsService.fetchRecipeOptions(searchTerm).then((data) => {
         dispatch({
-          type: 'FETCH_RECIPE_OPTIONS_SUCCESS',
+          type: 'SEARCH_RECIPE_OPTIONS_SUCCESS',
           payload: { recipe_options: data },
         })
         return Promise.resolve()
       },
       (error) => {
         dispatch({
-          type: 'FETCH_RECIPE_OPTIONS_FAIL',
+          type: 'SEARCH_RECIPE_OPTIONS_FAIL',
           message: error
         })
       
@@ -18,10 +18,10 @@ export const getRecipeOptions = () => (dispatch) => {
       })
 }
 
-export const getIngredientOptions = () => (dispatch) => {
-    return FormOptionsService.fetchIngredientOptions().then((data) => {
+export const searchIngredientOptions = (searchTerm) => (dispatch) => {
+    return FormOptionsService.searchIngredientOptions(searchTerm).then((data) => {
         dispatch({
-          type: 'FETCH_INGREDIENT_OPTIONS_SUCCESS',
+          type: 'SEARCH_INGREDIENT_OPTIONS_SUCCESS',
           payload: { ingredient_options: data },
         })
 
@@ -29,7 +29,7 @@ export const getIngredientOptions = () => (dispatch) => {
       },
       (error) => {
         dispatch({
-          type: 'FETCH_INGREDIENT_OPTIONS_FAIL',
+          type: 'SEARCH_INGREDIENT_OPTIONS_FAIL',
           message: error
         })
       
@@ -37,10 +37,10 @@ export const getIngredientOptions = () => (dispatch) => {
       })
 }
 
-export const getCategoryOptions = () => (dispatch) => {
-    return FormOptionsService.fetchCategoryOptions().then((data) => {
+export const searchCategoryOptions = (searchTerm) => (dispatch) => {
+    return FormOptionsService.fetchCategoryOptions(searchTerm).then((data) => {
         dispatch({
-          type: 'FETCH_CATEGORY_OPTIONS_SUCCESS',
+          type: 'SEARCH_CATEGORY_OPTIONS_SUCCESS',
           payload: { category_options: data },
         })
 
@@ -48,7 +48,7 @@ export const getCategoryOptions = () => (dispatch) => {
       },
       (error) => {
         dispatch({
-          type: 'FETCH_CATEGORY_OPTIONS_FAIL',
+          type: 'SEARCH_CATEGORY_OPTIONS_FAIL',
           message: error
         })
       
