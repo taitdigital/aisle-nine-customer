@@ -34,7 +34,7 @@ export default function RecipeListItem({recipe}) {
 
     return (
         <div className="w-full pb-8 p-1 px-2 hover:bg-blue-50 rounded">
-            <small className="text-left text-gray-400 pb-2 block">{recipe.category.name}</small>
+            <small className="text-left text-gray-400 pb-2 block">{recipe.category?.name}</small>
             <div className="flex-1 border-gray-200 flex cursor-pointer" 
                 onClick={() => { handleClick(recipe.recipe_id) }}
             >    
