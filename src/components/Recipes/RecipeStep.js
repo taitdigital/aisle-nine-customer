@@ -22,7 +22,7 @@ export default function RecipeStep({ step, ingredientList }) {
               <img src={stepImage} width="80" className="h-full" /> 
           </div>
           <p className="pl-4 whitespace-pre-wrap">
-            <small className="block flex items-center text-xs text-gray-400 my-2">
+            <small className="flex items-center text-xs text-gray-400 my-2">
               <PlayIcon className="w-4 h-4 mr-2" />
               <span>{displayFormat(step.timer)}</span>
             </small>
