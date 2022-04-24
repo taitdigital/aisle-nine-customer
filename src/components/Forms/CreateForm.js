@@ -11,7 +11,7 @@ export default function SearchForm() {
     }
 
     return (
-        <div className="flex items-center justify-center items-center">
+        <div className="flex items-center justify-center">
             <div className="mb-2 pt-2 w-96">
                 <div className="flex">
                     <input 
