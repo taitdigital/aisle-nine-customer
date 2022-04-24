@@ -5,12 +5,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PrivateRoute from './components/Utility/PrivateRoute'
 import { useSelector } from 'react-redux'
 
-
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
+import Register from './views/Register/Register'
 import Recipes from './views/Recipes/Recipes'
 import MealPlans from './views/MealPlans/MealPlans'
 import UserRecipes from './views/UserRecipes/UserRecipes'
@@ -20,6 +20,8 @@ import ShoppingList from './views/ShoppingList/ShoppingList'
 import UserPreferences from './views/UserPreferences/UserPreferences'
 import BetaBugReport from './views/BetaBugReport/BetaBugReport'
 import RecipeDetail from './components/Recipes/RecipeDetail'
+import ResetPassword from './views/ResetPassword/ResetPassword'
+import ResetPasswordLink from './views/ResetPassword/ResetPasswordLink'
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -36,6 +38,9 @@ const App = () => {
                 <div className="w-screen pt-12 flex justify-center items-center">
                     <Routes>
                       <Route path="/login" element={<Login />} />
+                      <Route path="/register" element={<Register />} />
+                      <Route path="/reset-password/:jwt" element={<ResetPassword />} />
+                      <Route path="/reset-link" element={<ResetPasswordLink />} />
                       <Route path="/home" element={<Home/>} />
                       <Route path="/recipes" element={<Recipes/>} />
                       <Route path="/recipes/:id" element={<RecipeDetail />} exact />              

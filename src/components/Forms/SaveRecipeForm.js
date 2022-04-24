@@ -1,7 +1,27 @@
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { StarIcon, ChevronDownIcon } from '@heroicons/react/solid'
+import { createSavedRecipe } from '../../actions/user.actions'
 
 export default function SaveRecipeForm() {
-    
+    const dispatch = useDispatch()
+    const { isLoggedIn } = useSelector(state => state.auth)
+
+    const [saved, setSaved] = useState()
+    const [loading, setLoading] = useState(false)
+
+    const handleSave = async e => {
+        e.preventDefault()
+        setLoading(true)
+
+        dispatch(createSavedRecipe()).then(() => {
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })
+    }
+
     return (
         <div className="relative">
             <button 
@@ -9,7 +29,7 @@ export default function SaveRecipeForm() {
                 data-dropdown-toggle="dropdownFavorite" 
                 className="border mb-2 border-blue-200 rounded-lg text-xs p-1 flex justify-between max-w-[80px]" 
                 type="button">
-                <StarIcon className="w-4 h-4 pr-1 mr-2 border-r border-blue-200 text-gray-300" />
+                <StarIcon className="w-4 h-4 pr-1 mr-2 border-r border-blue-200 text-gray-300" onClick={handleSave} />
                 <span className="text-center text-xs text-blue-400">save</span>
                 <ChevronDownIcon className="ml-2 w-4 h-4 border-l border-blue-200 text-blue-400" />
             </button>

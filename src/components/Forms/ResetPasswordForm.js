@@ -1,8 +1,17 @@
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom';
+
+import Loading from '../UI/Loading'
+import { resetPassword } from '../../actions/auth.actions'
+
 export default function ResetPassword() {
+    const dispatch = useDispatch()
+    const { isLoggedIn } = useSelector(state => state.auth)
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [confimPassword, setConfirmPassword] = useState()
+    const [confirmPassword, setConfirmPassword] = useState()
 
     const [loading, setLoading] = useState(false)
 
@@ -10,12 +19,12 @@ export default function ResetPassword() {
         e.preventDefault()
         setLoading(true)
 
-        if (password !== confimPassword) {
+        if (password !== confirmPassword) {
             console.warn('passwords do not match')
             setLoading(false)
         }
 
-        dispatch(reset({ email, password, confimPassword})).then(() => {
+        dispatch(resetPassword({ email, password, confirmPassword})).then(() => {
             setLoading(false)
         }).catch(() => {
             setLoading(false)

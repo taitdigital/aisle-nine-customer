@@ -11,7 +11,6 @@ export default function SearchForm() {
         e.preventDefault()
     }
 
-
     return (
         <div className="flex items-center justify-center items-center">
             <div className="mb-2 pt-2 w-96">
