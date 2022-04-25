@@ -2,12 +2,15 @@ import * as UserService from '../services/user.service'
 
 const resolver = (p, success, failure, dispatch) => {
   return p.then((data) => {
+    const storeKey = success.split('_').slice(1, -1).join('_').toLowerCase()
+
     dispatch({
       type: success,
       payload: { 
-        [success.replace('_SUCCESS', '').toLowerCase()]: data 
+        [storeKey]: data 
       }
     })
+
     return Promise.resolve()
   },
   (error) => {

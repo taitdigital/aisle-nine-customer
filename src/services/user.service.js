@@ -90,14 +90,17 @@ export function fetchUserSavedRecipes() {
     return fetch(API_URL + '/user-saved-recipes', {
         method: 'GET', 
         headers: requestHeader()
-    }).then(response => response.json()) 
+    }).then(response => response.json()).then((r) => {
+        localStorage.setItem('saved_recipes', JSON.stringify(r.data))
+        return r
+    }) 
 }
 
 export function saveRecipe(payload) {
     return fetch(API_URL + '/user-saved-recipes', {
         method: 'POST', 
         headers: requestHeader(),
-        body: payload
+        body: JSON.stringify(payload)
     }).then(response => response.json()) 
 }
 
@@ -110,14 +113,14 @@ export function removeSavedRecipe(recipe_id) {
 
 /** User Shoppinglists */
 export function fetchShoppinglists() {
-    return fetch(API_URL + '/user-shoppinglist', {
+    return fetch(API_URL + '/user-shoppinglists', {
         method: 'GET', 
         headers: requestHeader()
     }).then(response => response.json()) 
 }
 
 export function createShoppinglist(payload) {
-    return fetch(API_URL + '/user-shoppinglist', {
+    return fetch(API_URL + '/user-shoppinglists', {
         method: 'POST', 
         headers: requestHeader(),
         body: payload
@@ -125,7 +128,7 @@ export function createShoppinglist(payload) {
 }
 
 export function updateShoppinglist(shoppinglist_id, payload) {
-    return fetch(API_URL + '/user-shoppinglist/' + shoppinglist_id, {
+    return fetch(API_URL + '/user-shoppinglists/' + shoppinglist_id, {
         method: 'PUT', 
         headers: requestHeader(),
         body: payload
@@ -133,7 +136,7 @@ export function updateShoppinglist(shoppinglist_id, payload) {
 }
 
 export function deleteShoppinglist(shoppinglist_id) {
-    return fetch(API_URL + '/user-shoppinglist/' + shoppinglist_id, {
+    return fetch(API_URL + '/user-shoppinglists/' + shoppinglist_id, {
         method: 'DELETE', 
         headers: requestHeader()
     }).then(response => response.json()) 

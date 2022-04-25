@@ -33,7 +33,7 @@ export default function RecipeListItem({recipe}) {
     const recipeImage = (recipe.image) ? `${IMG_URL}/${recipe.image}` : PLACEHOLDER_IMG
 
     return (
-        <div className="w-full pb-8 p-1 px-2 hover:bg-blue-50 rounded">
+        <div className="w-full p-1 px-2 mb-8 hover:bg-blue-50 rounded">
             <small className="text-left text-gray-400 pb-2 block">{recipe.category?.name}</small>
             <div className="flex-1 border-gray-200 flex cursor-pointer" 
                 onClick={() => { handleClick(recipe.recipe_id) }}
@@ -59,10 +59,10 @@ export default function RecipeListItem({recipe}) {
             </div>
 
             <div className="p-2 flex justify-end items-end">
-                    <SaveRecipeForm />
+                    <SaveRecipeForm recipe_id={recipe.recipe_id} />
                 </div>
 
-            <div className="flex flex-shrink flex-wrap border-t border-gray-200 pt-2 pb-4">
+            <div className="flex flex-shrink flex-wrap border-t border-gray-200 pt-2">
                 {
                     allergens.length > 0 
                         ? <small className="text-left text-xs text-orange-400 pb-2 pr-2">Contains allergens:</small> : <></>

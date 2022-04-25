@@ -8,7 +8,7 @@ import Loading from '../UI/Loading'
 export default function SavedRecipeList() {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false);
-    const recipes = useSelector(state => state.recipes)
+    const recipes = useSelector(state => state?.user_data?.saved_recipes)
   
     useEffect(() => {
         setLoading(true)
@@ -21,14 +21,14 @@ export default function SavedRecipeList() {
     }, [])
 
     return (
-        <div className="w-full lg:w-2/3">
+        <div className="w-full">
             <section className="antialiased text-gray-600 px-4">
-                <div className="flex flex-col justify-center pt-4">
-                    <div className="p-3">
+                <div className="flex flex-col items-center justify-center pt-4">
+                    <div className="p-3 w-full lg:w-2/3">
                         <div className="overflow-x-auto">
                             { 
-                                (recipes?.recipes) ?
-                                    recipes.recipes.map((r) => <RecipeListItem recipe={r} key={r.recipe_id} />)
+                                (recipes) ?
+                                    recipes.map((r) => <RecipeListItem recipe={r} key={r.recipe_id} />)
                                     : 'No Recipes Found' 
                             }
                         </div>

@@ -1,4 +1,10 @@
-export default (state = null, action) => {
+const savedRecipes = JSON.parse(localStorage.getItem('saved_recipes'))
+
+const initialState = {
+    saved_recipes: (savedRecipes) ? savedRecipes : []
+}
+
+export default (state = initialState, action) => {
     const { type, payload } = action
 
     switch(type) {
@@ -6,7 +12,7 @@ export default (state = null, action) => {
         case 'FETCH_USER_PROFILE_SUCCESS':
             return {
                 ...state,
-                user_profile: payload.user_profile
+                user_data: payload.user_data
             }
         case 'FETCH_USER_PROFILE_FAIL':
                 return {
@@ -15,7 +21,7 @@ export default (state = null, action) => {
         case 'UPDATE_USER_PROFILE_SUCCESS':
             return {
                 ...state,
-                user_profile: payload.user_profile
+                user_data: payload.user_data
             }
         case 'UPDATE_USER_PROFILE_FAIL':
             return {
@@ -24,7 +30,7 @@ export default (state = null, action) => {
         case 'DELETE_USER_PROFILE_SUCCESS':
             return {
                 ...state,
-                user_profile: {}
+                user_data: {}
             }
         case 'DELETE_USER_PROFILE_FAIL':
             return {
@@ -147,8 +153,8 @@ export default (state = null, action) => {
         /** User Saved Recipes */
         case 'FETCH_SAVED_RECIPES_SUCCESS':
             return {
-                ...state,
-                saved_recipes: payload.saved_recipes
+                ...state.user_data,
+                saved_recipes: payload.saved_recipes.data
             }
         case 'FETCH_SAVED_RECIPES_FAIL':
                 return {

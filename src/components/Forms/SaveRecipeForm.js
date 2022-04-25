@@ -1,25 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { StarIcon, ChevronDownIcon } from '@heroicons/react/solid'
-import { createSavedRecipe } from '../../actions/user.actions'
+import { createSavedRecipe, deleteSavedRecipe } from '../../actions/user.actions'
 
-export default function SaveRecipeForm() {
+export default function SaveRecipeForm({ recipe_id }) {
     const dispatch = useDispatch()
     const { isLoggedIn } = useSelector(state => state.auth)
+    const savedRecipes = useSelector(state => state?.user_data?.saved_recipes)
 
-    const [saved, setSaved] = useState()
+    const [saved, setSaved] = useState(false)
     const [loading, setLoading] = useState(false)
+    
+    useEffect(() => {
+        if (savedRecipes) {
+            setSaved(savedRecipes.map(r => r.recipe_id).includes(recipe_id))
+        }
+    })
 
-    const handleSave = async e => {
+    const handleToggleSave = async e => {
         e.preventDefault()
+
+        const method = (!saved) 
+            ? createSavedRecipe({recipe_id}) 
+            : deleteSavedRecipe(recipe_id)
+
         setLoading(true)
 
-        dispatch(createSavedRecipe()).then(() => {
+        dispatch(method).then((r) => {
+            console.warn('handleToggleSave')
+
+            setSaved(!saved)
             setLoading(false)
         }).catch(() => {
+            setSaved(!saved)
             setLoading(false)
         })
+    }
+
+    if (!isLoggedIn) {
+        return (<></>)
     }
 
     return (
@@ -29,7 +49,7 @@ export default function SaveRecipeForm() {
                 data-dropdown-toggle="dropdownFavorite" 
                 className="border mb-2 border-blue-200 rounded-lg text-xs p-1 flex justify-between max-w-[80px]" 
                 type="button">
-                <StarIcon className="w-4 h-4 pr-1 mr-2 border-r border-blue-200 text-gray-300" onClick={handleSave} />
+                <StarIcon className={`${saved ? 'text-yellow-300' : 'text-gray-300'} w-4 h-4 pr-1 mr-2 border-r border-blue-200 `} onClick={handleToggleSave} />
                 <span className="text-center text-xs text-blue-400">save</span>
                 <ChevronDownIcon className="ml-2 w-4 h-4 border-l border-blue-200 text-blue-400" />
             </button>

@@ -4,6 +4,10 @@ import { Navigate } from 'react-router-dom';
 
 import Loading from '../UI/Loading'
 import { login } from '../../actions/auth.actions'
+import { getSavedRecipes, getUserMealplans, getShoppinglists } from '../../actions/user.actions'
+
+
+
 
 export default function LoginForm() {
     const dispatch = useDispatch()
@@ -12,13 +16,17 @@ export default function LoginForm() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)
 
         dispatch(login({ email, password })).then(() => {
+            dispatch(getSavedRecipes())
+            //dispatch(getUserMealplans())
+            //dispatch(getShoppinglists())
+
             setLoading(false)
         }).catch(() => {
             setLoading(false)
